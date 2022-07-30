@@ -23,7 +23,7 @@ def main(stdscrn):
             pad.addstr(char)
     forest_num = randint(10,30)
     
-    gen_forest(pad)
+    gen_forest(pad, 300)
     gen_water(pad, 100)
 
     pad.refresh(0, 0, 0, 0, rows-1, cols-1)
