@@ -1,7 +1,7 @@
-import curses, time 
+import curses
 from curses import wrapper
-from random import randint
 from controllers import controller
+from water import gen_water
 
 MAX_COLS = 500
 MAX_ROWS = 500
@@ -27,7 +27,9 @@ def main(stdscrn):
         if(clock > 100):
             clock = 0
 
-        x, y = controller(x, y, rows, cols, stdscrn, pad)
+        x, y, escaped = controller(x, y, rows, cols, stdscrn, pad)
+        if(escaped):
+            break
 
         if(clock%50 == 0):
             pass
