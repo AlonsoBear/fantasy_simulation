@@ -11,7 +11,7 @@ def gen_forest(pad, amount):
     }
 
     curses.init_color(curses.COLOR_YELLOW, 42,   162,   42)
-    curses.init_color(curses.COLOR_GREEN, 165,   42,   42)
+    curses.init_color(curses.COLOR_GREEN, 165,   42,   4)
     curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_YELLOW)
     COLOR_ARBOLES = curses.color_pair(1)
 
