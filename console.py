@@ -5,6 +5,7 @@ from random import randint
 #local imports
 from controllers import controller
 from forest import gen_forest
+from water import gen_water
 
 MAX_COLS = 500
 MAX_ROWS = 500
@@ -23,6 +24,7 @@ def main(stdscrn):
     forest_num = randint(10,30)
     
     gen_forest(pad)
+    gen_water(pad, 100)
 
     pad.refresh(0, 0, 0, 0, rows-1, cols-1)
 
