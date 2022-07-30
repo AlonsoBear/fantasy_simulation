@@ -1,7 +1,10 @@
 import curses
 from curses import wrapper
+from random import randint
+
+#local imports
 from controllers import controller
-from water import gen_water
+from forest import gen_forest
 
 MAX_COLS = 500
 MAX_ROWS = 500
@@ -17,6 +20,9 @@ def main(stdscrn):
         for j in range(MAX_ROWS - 1):
             char = ','
             pad.addstr(char)
+    forest_num = randint(10,30)
+    
+    gen_forest(pad)
 
     pad.refresh(0, 0, 0, 0, rows-1, cols-1)
 

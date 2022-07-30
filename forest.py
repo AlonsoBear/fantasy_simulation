@@ -3,7 +3,7 @@ from curses import wrapper
 from random import randint
 import time
 
-def gen_forest():
+def gen_forest(pad):
 
     sizeMap = {
         1: 15,
@@ -11,8 +11,11 @@ def gen_forest():
         3: 40
     }
     
-    seed_column = randint(1, 459)
-    seed_row = randint(1, 459)
+    """ seed_column = randint(1, 459)
+    seed_row = randint(1, 459) """
+
+    seed_column = 5
+    seed_row = 5
 
     forest_column_size = sizeMap[randint(1, 3)]
     forest_row_size = sizeMap[randint(1, 3)]
@@ -20,7 +23,4 @@ def gen_forest():
     for columns in range(seed_column + forest_column_size):
         for Rows in range(seed_row + forest_row_size):
             if randint(1, 3) != 1:
-                pass
                 pad.addstr(Rows, columns, 'T')
-
-gen_forest()
