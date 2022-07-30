@@ -3,8 +3,8 @@ import curses
 
 
 def gen_water(pad, amount):
-    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_CYAN)
-    WATER = curses.color_pair(1)
+    curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_CYAN)
+    WATER = curses.color_pair(2)
 
     for i in range(0, amount):
         sizeMap = {
