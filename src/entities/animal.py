@@ -43,7 +43,7 @@ class Animal():
         self.y = y
         self.previous = previus
     
-    """ def look_for_food(self):
+    def look_for_food(self):
         found_food = False
         new_x = self.x
         new_y = self.y
@@ -62,16 +62,17 @@ class Animal():
                 else:
                     continue  # only executed if the inner loop did NOT break
             break  # only executed if the inner loop DID break
-        return new_x, new_y, found_food """
+        return new_x, new_y, found_food
     
     def eat(self,new_x, new_y, loking_at):
         if loking_at == '.': self.pad.addstr(new_x, new_y, 'g', curses.color_pair(3))
         elif loking_at == 'T': self.pad.addstr(new_x, new_y, 'Y', curses.color_pair(1))
         elif loking_at == '>': self.pad.addstr(new_x, new_y, 'w', curses.color_pair(2))
+        self.hunger = 10
         
     def move_to(self):
-        #new_x, new_y, found_food = self.look_for_food()
-        if not False:
+        new_x, new_y, found_food = self.look_for_food()
+        if not found_food:
             new_x = self.x + randint(-1, 1)
             new_y = self.y + randint(-1, 1)
         if(new_x > 499 or new_x < 1 or new_y > 499 or new_y < 1):
