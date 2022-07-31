@@ -7,9 +7,7 @@ from controllers import controller
 from forest import gen_forest
 from water import gen_water
 from stone import gen_stones
-
-MAX_COLS = 500
-MAX_ROWS = 500
+from settings import *
 
 def main(stdscrn):
     rows, cols = stdscrn.getmaxyx()
@@ -18,8 +16,8 @@ def main(stdscrn):
     stdscrn.clear()
     stdscrn.refresh()
 
-    curses.init_color(curses.COLOR_YELLOW, 42,   162,   42)
-    curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_YELLOW)
+    curses.init_color(GRASS, 16, 227, 0) # grass
+    curses.init_pair(3, curses.COLOR_WHITE, GRASS)
     for i in range(MAX_COLS - 1):
         for j in range(MAX_ROWS - 1):
             char = ' '

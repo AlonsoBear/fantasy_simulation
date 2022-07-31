@@ -1,6 +1,8 @@
 import curses
 from curses import wrapper
 from random import randint
+from settings import GRASS, TREE
+from utils import rgb
 
 def gen_forest(pad, amount):
 
@@ -10,9 +12,9 @@ def gen_forest(pad, amount):
         3: 40
     }
 
-    curses.init_color(curses.COLOR_YELLOW, 42,   162,   42)
-    curses.init_color(curses.COLOR_GREEN, 165,   42,   4)
-    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_YELLOW)
+    curses.init_color(GRASS, rgb(17), rgb(130), rgb(0)) # grass
+    curses.init_color(TREE, 11,   37,   10) # tree
+    curses.init_pair(1, TREE, GRASS)
     COLOR_ARBOLES = curses.color_pair(1)
 
     for k in range(amount):
