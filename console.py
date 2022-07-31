@@ -4,7 +4,7 @@ from random import randint
 
 #local imports
 from controllers import controller
-from forest import gen_forest
+from forest import gen_forest, gen_sporadic_trees
 from water import gen_water
 from stone import gen_stones
 from settings import *
@@ -24,6 +24,9 @@ def main(stdscrn):
         for j in range(MAX_ROWS - 1):
             char = 'g'
             pad.addstr(char, curses.color_pair(3))
+
+    gen_sporadic_trees(pad)
+
     forest_num = randint(10,30)
     
     gen_forest(pad, 300)
