@@ -42,17 +42,16 @@ def main(stdscrn):
 
     x, y = 0, 0
 
+    clock = 0
     while True:
-        clock = 0
-        if(clock > 100):
+        if(clock > 10000):
+            Joaquin.cycle()
             clock = 0
 
         x, y, escaped = controller(x, y, rows, cols, stdscrn, pad)
         if(escaped):
             break
 
-        if(clock%99 == 0):
-            Joaquin.activate()
         clock += 1
             
     stdscrn.getch()
