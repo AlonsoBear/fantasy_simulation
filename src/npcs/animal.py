@@ -42,16 +42,34 @@ class Animal():
         self.x = x
         self.y = y
         self.previous = previus
+    
+    def look_for_food(self):
+        found_food = False
+        new_x = self.x
+        new_y = self.y
 
-    def move_to(self):
         #checar su rango de comida
         for look_x in range(self.x - self.food_radius, self.x + self.food_radius ):
             for look_y in range(self.y - self.food_radius, self.y + self.food_radius):
-                loking_at = chr(pad.inch(look_x, look_y) & 0xFF)
+                loking_at = chr(self.pad.inch(look_x, look_y) & 0xFF)
                 if loking_at == '.' or loking_at == 'T' or loking_at == '>':
-                    
-        new_x = self.x + randint(-1, 1)
-        new_y = self.y + randint(-1, 1)
+                    found_food = True
+                    if self.x < look_x:
+                         new_x = self.x + 1
+                    elif self.x > look_x:
+                        new_x = self.x - 1
+                    if self.y < look_y:
+                         new_y = self.y + 1
+                    elif self.x > look_x:
+                        new_y = self.y - 1 
+                #if they get to the food they should eat it
+        return new_x, new_y, found_food
+
+    def move_to(self):
+        new_x, new_y, found_food = self.look_for_food()
+        if not found_food:
+            new_x = self.x + randint(-1, 1)
+            new_y = self.y + randint(-1, 1)
         if(new_x > 499 or new_x < 1 or new_y > 499 or new_y < 1):
             return self.x, self.y
         return new_x, new_y
