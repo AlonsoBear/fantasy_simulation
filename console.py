@@ -8,6 +8,7 @@ from forest import gen_forest
 from water import gen_water
 from stone import gen_stones
 from settings import *
+from food import gen_food
 
 def main(stdscrn):
     rows, cols = stdscrn.getmaxyx()
@@ -20,13 +21,15 @@ def main(stdscrn):
     curses.init_pair(3, curses.COLOR_WHITE, GRASS)
     for i in range(MAX_COLS - 1):
         for j in range(MAX_ROWS - 1):
-            char = ' '
+            char = 'g'
             pad.addstr(char, curses.color_pair(3))
     forest_num = randint(10,30)
     
     gen_forest(pad, 300)
     gen_water(pad, 100)
     gen_stones(pad, 600)
+
+    gen_food(pad)
 
     pad.refresh(0, 0, 0, 0, rows-1, cols-1)
 
