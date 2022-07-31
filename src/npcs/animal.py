@@ -51,8 +51,8 @@ class Animal():
         return new_x, new_y
     
     def cycle(self):
-        if(self.is_dead()):
-            return
+        if(self.is_dead()): return
+        if(self.is_horny()): self.look_for_mate()
         new_x, new_y = self.move_to()
 
         if(new_x != self.x or new_y != self.y): self.move(new_x,new_y)
@@ -64,4 +64,21 @@ class Animal():
             return True
         return False
     
+    def is_horny(self):
+        self.sex_drive -= 1
+        if (self.sex_drive <= 4):
+            return True
+        return False
 
+    def look_for_mate(self):
+        pass
+
+    @staticmethod
+    def mate(self, lover_a, lover_b):
+        lover_a.sex_drive = 10
+        lover_b.sex_drive = 10
+
+        if(randint(0, 1)): 
+            return Animal(self.pad)
+        return None
+        

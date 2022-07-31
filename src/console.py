@@ -44,7 +44,7 @@ def main(stdscrn):
 
     clock = 0
     while True:
-        if(clock > 1000):
+        if(clock > 5000):
             [animal.cycle() for animal in animals]
             clock = 0
 
