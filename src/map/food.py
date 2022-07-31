@@ -1,4 +1,4 @@
-import curses
+import curses, logging
 from curses import wrapper
 from random import randint
 
@@ -28,6 +28,6 @@ def gen_food(pad):
                 elif current_value == 'g':
                     pad.addstr(Rows, columns, '.', COLOR_MANZANAS)
                 elif current_value == 'Y':
-                    pad.addstr(Rows, columns, 'Y', COLOR_MANZANAS)
+                    pad.addstr(Rows, columns, 'T', COLOR_MANZANAS)
                 
                 

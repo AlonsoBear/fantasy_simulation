@@ -44,7 +44,7 @@ def main(stdscrn):
 
     clock = 0
     while True:
-        if(clock > 10000):
+        if(clock > 1000):
             Joaquin.cycle()
             clock = 0
 
