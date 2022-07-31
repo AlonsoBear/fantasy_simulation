@@ -27,4 +27,4 @@ def gen_forest(pad, amount):
         for columns in range(seed_column, seed_column + forest_column_size):
             for Rows in range(seed_row, seed_row + forest_row_size):
                 if randint(1, 6) == 1:
-                    pad.addstr(Rows, columns, 'T', COLOR_ARBOLES)
+                    pad.addstr(Rows, columns, '⍋', COLOR_ARBOLES)

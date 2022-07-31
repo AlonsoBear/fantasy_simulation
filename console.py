@@ -18,7 +18,7 @@ def main(stdscrn):
     stdscrn.refresh()
 
     curses.init_color(GRASS, 16, 227, 0) # grass
-    curses.init_pair(3, curses.COLOR_WHITE, GRASS)
+    curses.init_pair(3, GRASS, GRASS)
     for i in range(MAX_COLS - 1):
         for j in range(MAX_ROWS - 1):
             char = 'g'
