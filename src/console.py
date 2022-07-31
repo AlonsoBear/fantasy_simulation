@@ -9,6 +9,7 @@ from map.water import gen_water
 from map.stone import gen_stones
 from settings import *
 from map.food import gen_food
+from npcs.animal import Animal
 
 def main(stdscrn):
     logging.basicConfig(filename='../error.log', encoding='utf-8', level=logging.DEBUG)
@@ -35,6 +36,8 @@ def main(stdscrn):
 
     gen_food(pad)
 
+    Joaquin = Animal(pad)
+
     pad.refresh(0, 0, 0, 0, rows-1, cols-1)
 
     x, y = 0, 0
@@ -48,8 +51,8 @@ def main(stdscrn):
         if(escaped):
             break
 
-        if(clock%50 == 0):
-            pass
+        if(clock%99 == 0):
+            Joaquin.activate()
         clock += 1
             
     stdscrn.getch()
