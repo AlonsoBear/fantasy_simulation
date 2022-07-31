@@ -7,6 +7,7 @@ from controllers import controller
 from forest import gen_forest
 from water import gen_water
 from stone import gen_stones
+from food import gen_food
 
 MAX_COLS = 500
 MAX_ROWS = 500
@@ -29,6 +30,8 @@ def main(stdscrn):
     gen_forest(pad, 300)
     gen_water(pad, 100)
     gen_stones(pad, 600)
+
+    gen_food(pad)
 
     pad.refresh(0, 0, 0, 0, rows-1, cols-1)
 
