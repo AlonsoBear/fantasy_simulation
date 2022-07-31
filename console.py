@@ -19,10 +19,10 @@ def main(stdscrn):
     stdscrn.refresh()
 
     curses.init_color(curses.COLOR_YELLOW, 42,   162,   42)
-    curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_YELLOW)
+    curses.init_pair(3, curses.COLOR_YELLOW, curses.COLOR_YELLOW)
     for i in range(MAX_COLS - 1):
         for j in range(MAX_ROWS - 1):
-            char = ' '
+            char = 'g'
             pad.addstr(char, curses.color_pair(3))
     forest_num = randint(10,30)
     
