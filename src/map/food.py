@@ -7,7 +7,7 @@ from utils import rgb
 from settings import MAX_COLS, MAX_ROWS
 from settings import FISH, MANZANAS, ARBOL_DE_MANZANA, GRASS
 
-def gen_food(pad):
+def gen_food(pad, abundance):
     curses.init_color(FISH, rgb(250), rgb(128), rgb(114)) # salmon
     curses.init_pair(FISH, FISH, curses.COLOR_CYAN)
     COLOR_PECES = curses.color_pair(FISH)
@@ -19,7 +19,7 @@ def gen_food(pad):
 
     for columns in range(MAX_COLS - 1):
         for Rows in range(MAX_ROWS - 1):
-            if randint(1, 20) == 1:
+            if randint(1, abundance) == 1:
                 attrs = pad.inch(Rows, columns)
                 current_value = chr(attrs & 0xFF)
 

@@ -34,7 +34,7 @@ def main(stdscrn):
     gen_water(pad, 100)
     gen_stones(pad, 600)
 
-    gen_food(pad)
+    gen_food(pad, 20)
 
     Joaquin = Animal(pad)
 
