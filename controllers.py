@@ -1,5 +1,4 @@
-MAX_COLS = 500
-MAX_ROWS = 500
+from settings import MAX_COLS, MAX_ROWS
 
 def controller(x, y, rows, cols, stdscr, pad):
     escaped = False
