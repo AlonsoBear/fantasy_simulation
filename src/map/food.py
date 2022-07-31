@@ -7,7 +7,7 @@ from utils import rgb
 from settings import MAX_COLS, MAX_ROWS
 from settings import FISH, MANZANAS, ARBOL_DE_MANZANA, GRASS
 
-def gen_food(pad, abundance):
+def gen_food(pad, manzanas ,arbol_de_manzana, peces, abundance):
     curses.init_color(FISH, rgb(250), rgb(128), rgb(114)) # salmon
     curses.init_pair(FISH, FISH, curses.COLOR_CYAN)
     COLOR_PECES = curses.color_pair(FISH)
@@ -24,10 +24,10 @@ def gen_food(pad, abundance):
                 current_value = chr(attrs & 0xFF)
 
                 if current_value == 'w':
-                    pad.addstr(Rows, columns, '>', COLOR_PECES)
+                    peces.place(columns,Rows)
                 elif current_value == 'g':
-                    pad.addstr(Rows, columns, '.', COLOR_MANZANAS)
+                    manzanas.place(columns,Rows)
                 elif current_value == 'Y':
-                    pad.addstr(Rows, columns, 'T', COLOR_MANZANAS)
+                    arbol_de_manzana.place(columns,Rows)
                 
                 

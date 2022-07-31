@@ -9,7 +9,8 @@ from map.water import gen_water
 from map.stone import gen_stones
 from settings import *
 from map.food import gen_food
-from npcs.animal import Animal
+from entities.animal import Animal
+from tiles import init_tiles
 
 def main(stdscrn):
     logging.basicConfig(filename='../error.log', encoding='utf-8', level=logging.DEBUG)
@@ -19,22 +20,20 @@ def main(stdscrn):
     stdscrn.clear()
     stdscrn.refresh()
 
-    curses.init_color(GRASS, 16, 227, 0) # grass
-    curses.init_pair(3, GRASS, GRASS)
+    #init tiles intances
+    grass, tree, peces, manzanas, arbol_de_manzana, stone, water = init_tiles(pad)
+    
     for i in range(MAX_COLS - 1):
         for j in range(MAX_ROWS - 1):
-            char = 'g'
-            pad.addstr(char, curses.color_pair(3))
+            grass.place(i,j)
 
-    gen_sporadic_trees(pad)
+    gen_sporadic_trees(tree)
 
-    forest_num = randint(10,30)
-    
-    gen_forest(pad, 300)
-    gen_water(pad, 100)
-    gen_stones(pad, 600)
+    gen_forest(tree, 300)
+    gen_water(water, 100)
+    gen_stones(stone, 600)
 
-    gen_food(pad, 20)
+    gen_food(pad, manzanas,arbol_de_manzana, peces , 20)
 
     ANIMALS = [Animal(pad) for i in range(0, POPULATION)]
     [animal.born() for animal in ANIMALS]

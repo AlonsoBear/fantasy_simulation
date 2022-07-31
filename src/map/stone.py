@@ -3,12 +3,7 @@ import curses
 from settings import STONE, STONE_BG
 from utils import rgb
 
-def gen_stones(pad, amount):
-    curses.init_color(STONE, rgb(50), rgb(50), rgb(50))
-    curses.init_color(STONE_BG, rgb(105), rgb(105), rgb(105))
-    curses.init_pair(4, STONE, STONE_BG)
-    STONE_COLOR = curses.color_pair(4)
-
+def gen_stones(stone, amount):
     for i in range(0, amount):
         sizeMap = {
             1: 2,
@@ -24,7 +19,7 @@ def gen_stones(pad, amount):
 
         for columns in range(seed_column, seed_column + stone_column_size):
             for rows in range(seed_row, seed_row + stone_row_size):
-                pad.addstr(rows, columns, '©', STONE_COLOR)
+                stone.place(columns,rows)
 
 
 

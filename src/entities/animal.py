@@ -72,6 +72,11 @@ class Animal():
         if(new_x > 499 or new_x < 1 or new_y > 499 or new_y < 1 or value_in_new_location == "O"):
             return self.x, self.y
         return new_x, new_y
+
+    def eat(self,new_x, new_y, loking_at):
+        if loking_at == '.': self.pad.addstr(new_x, new_y, 'g', curses.color_pair(3))
+        elif loking_at == 'T': self.pad.addstr(new_x, new_y, 'Y', curses.color_pair(1))
+        elif loking_at == '>': self.pad.addstr(new_x, new_y, 'w', curses.color_pair(2))
     
     def cycle(self):
         if(self.is_dead()): return
