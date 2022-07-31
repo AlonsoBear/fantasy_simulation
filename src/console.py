@@ -4,14 +4,14 @@ from random import randint
 
 #local imports
 from controllers import controller
-from forest import gen_forest, gen_sporadic_trees
-from water import gen_water
-from stone import gen_stones
+from map.forest import gen_forest, gen_sporadic_trees
+from map.water import gen_water
+from map.stone import gen_stones
 from settings import *
-from food import gen_food
+from map.food import gen_food
 
 def main(stdscrn):
-    logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+    logging.basicConfig(filename='../error.log', encoding='utf-8', level=logging.DEBUG)
     rows, cols = stdscrn.getmaxyx()
     pad = curses.newpad(MAX_ROWS, MAX_COLS)
     stdscrn.nodelay(True)
