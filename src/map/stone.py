@@ -24,7 +24,7 @@ def gen_stones(pad, amount):
 
         for columns in range(seed_column, seed_column + stone_column_size):
             for rows in range(seed_row, seed_row + stone_row_size):
-                pad.addstr(rows, columns, 'Ω', STONE_COLOR)
+                pad.addstr(rows, columns, '©', STONE_COLOR)
 
 
 

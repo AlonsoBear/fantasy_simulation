@@ -16,7 +16,7 @@ class Animal():
         self.food_radius = 5
         self.mating_radius = 20
         self.sex = "f" if(randint(0,1)) else "m"
-        self.character = "◉"
+        self.character = "O"
         self.pad = pad
         self.pad.addstr(self.x, self.y, self.character)
 
@@ -27,10 +27,17 @@ class Animal():
         self.x = x
         self.y = y
         self.previous = previus
+
+    def move_to(self):
+        new_x = self.x + randint(-1, 1)
+        new_y = self.y + randint(-1, 1)
+        if(new_x > 499 or new_x < 1 or new_y > 499 or new_x < 1):
+            return self.x, self.y
+        return new_x, new_y
     
     def cycle(self):
-        self.hp -= 1
-
+        if(self.is_dead()):
+            return
         new_x = self.x + randint(-1, 1)
         new_y = self.y + randint(-1, 1)
 
@@ -46,7 +53,9 @@ class Animal():
         if(new_x != self.x or new_y != self.y): self.move(new_x,new_y)
 
     def is_dead(self):
+        self.hp -= 1
         if(self.hp <= 0):
+            self.pad.addstr(self.x, self.y, self.previous)
             return True
         return False
     
