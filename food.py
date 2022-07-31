@@ -27,7 +27,7 @@ def gen_food(pad):
                     pad.addstr(Rows, columns, 'F', COLOR_PECES)
                 elif current_value == 'g':
                     pad.addstr(Rows, columns, 'M', COLOR_MANZANAS)
-                elif current_value == 'T':
-                    pad.addstr(Rows, columns, 'P', COLOR_MANZANAS)
+                elif current_value == 'Y':
+                    pad.addstr(Rows, columns, 'Y', COLOR_MANZANAS)
                 
                 
