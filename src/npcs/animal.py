@@ -45,5 +45,9 @@ class Animal():
         
         if(new_x != self.x or new_y != self.y): self.move(new_x,new_y)
 
+    def is_dead(self):
+        if(self.hp <= 0):
+            return True
+        return False
     
 
