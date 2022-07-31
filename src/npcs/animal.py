@@ -63,7 +63,12 @@ class Animal():
                     elif self.x > look_x:
                         new_y = self.y - 1 
                 #if they get to the food they should eat it
+                if new_x == look_x and new_y == look_y:
+                    self.eat(new_x, new_y)
         return new_x, new_y, found_food
+    
+    def eat(self):
+        
 
     def move_to(self):
         new_x, new_y, found_food = self.look_for_food()
