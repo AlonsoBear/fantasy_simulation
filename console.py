@@ -1,4 +1,4 @@
-import curses
+import curses, logging
 from curses import wrapper
 from random import randint
 
@@ -11,6 +11,7 @@ from settings import *
 from food import gen_food
 
 def main(stdscrn):
+    logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
     rows, cols = stdscrn.getmaxyx()
     pad = curses.newpad(MAX_ROWS, MAX_COLS)
     stdscrn.nodelay(True)
