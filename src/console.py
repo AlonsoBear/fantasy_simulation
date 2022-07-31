@@ -36,7 +36,9 @@ def main(stdscrn):
 
     gen_food(pad, 20)
 
-    animals = [Animal(pad) for i in range(0, POPULATION)]
+    ANIMALS = [Animal(pad) for i in range(0, POPULATION)]
+    [animal.born() for animal in ANIMALS]
+    
 
     pad.refresh(0, 0, 0, 0, rows-1, cols-1)
 
@@ -45,7 +47,7 @@ def main(stdscrn):
     clock = 0
     while True:
         if(clock > 5000):
-            [animal.cycle() for animal in animals]
+            [animal.cycle() for animal in ANIMALS]
             clock = 0
 
         x, y, escaped = controller(x, y, rows, cols, stdscrn, pad)

@@ -1,6 +1,6 @@
-from settings import MAX_COLS, MAX_ROWS, FISH, MANZANAS, ARBOL_DE_MANZANA, GRASS
+from settings import MAX_COLS, MAX_ROWS, FISH, MANZANAS, ANIMALS
 from random import randint, uniform
-import curses,logging
+import curses
 
 def charToColor(prev):
     if prev == 'Y':
@@ -17,24 +17,38 @@ def charToColor(prev):
         return FISH
     return 1
 class Animal():
+    
+    # INITIALIZATION METHODS
     def __init__(self, pad):
         self.x = randint(0,MAX_COLS - 1)
         self.y = randint(0,MAX_ROWS - 1)
-        # self.x = 30
-        # self.y = 25
         attrs = pad.inch(self.x, self.y)
         self.previous = chr(attrs & 0xFF)
         self.hp = 500
         self.hunger = 10
         self.sex_drive = 10
         self.strength = 1
-        self.food_radius = 3
-        self.mating_radius = 20
+        self.scan_radius = 5
         self.sex = "f" if(randint(0,1)) else "m"
         self.character = "O"
         self.pad = pad
-        self.pad.addstr(self.x, self.y, self.character)
+        self.near_food = []
+        self.near_mates = []
 
+    def born(self):
+        self.pad.addstr(self.x, self.y, self.character)
+        self.first_scan()
+
+    def first_scan(self):
+        for look_x in range(self.x - self.scan_radius, self.x + self.scan_radius):
+            for look_y in range(self.y - self.scan_radius, self.y + self.scan_radius):
+                looking_at = chr(self.pad.inch(look_x, look_y) & 0xFF)
+                if looking_at == '.' or looking_at == 'T' or looking_at == '>':
+                    pass # SAVE FOOD
+                elif looking_at == 'O':
+                    self.near_mates = [ANIMALS.push(animal) for animal in ANIMALS if(animal.x == look_x and animal.y == look_y)]
+
+    # ACTION METHODS
     def move(self, x, y):
         previus = chr(self.pad.inch(x, y) & 0xFF)
         self.pad.addstr(x, y, self.character)
@@ -44,45 +58,34 @@ class Animal():
         self.previous = previus
     
     def look_for_food(self):
-        found_food = False
-        new_x = self.x
-        new_y = self.y
-
-        #checar su rango de comida
-        for look_x in range(self.x - self.food_radius, self.x + self.food_radius ):
-            for look_y in range(self.y - self.food_radius, self.y + self.food_radius):
-                loking_at = chr(self.pad.inch(look_x, look_y) & 0xFF)
-                if loking_at == '.' or loking_at == 'T' or loking_at == '>':
-                    found_food = True
-                    if self.x < look_x:
-                         new_x = self.x + 1
-                    elif self.x > look_x:
-                        new_x = self.x - 1
-                    if self.y < look_y:
-                         new_y = self.y + 1
-                    elif self.x > look_x:
-                        new_y = self.y - 1 
-                #if they get to the food they should eat it
-        return new_x, new_y, found_food
+        pass
 
     def move_to(self):
-        new_x, new_y, found_food = self.look_for_food()
-        if not found_food:
-            new_x = self.x + randint(-1, 1)
-            new_y = self.y + randint(-1, 1)
-        if(new_x > 499 or new_x < 1 or new_y > 499 or new_y < 1):
+        if(self.is_hungry()):
+            new_x, new_y = self.look_for_food()
+        elif(self.is_horny() and len(self.near_mates) > 0):
+            new_x, new_y = self.look_for_mate()
+        else:
+            new_x, new_y = self.x + randint(-1, 1), self.y + randint(-1, 1)
+            
+        value_in_new_location = chr(self.pad.inch(new_x, new_y) & 0xFF)
+        if(new_x > 499 or new_x < 1 or new_y > 499 or new_y < 1 or value_in_new_location == "O"):
             return self.x, self.y
         return new_x, new_y
     
     def cycle(self):
         if(self.is_dead()): return
-        if(self.is_horny()): self.look_for_mate()
         new_x, new_y = self.move_to()
-
         if(new_x != self.x or new_y != self.y): self.move(new_x,new_y)
 
+    def look_for_mate(self):
+        mate = self.near_mates.pop()
+        return mate.x, mate.y
+
+
+    # STATE METHODS
     def is_dead(self):
-        self.hp -= 1
+        # self.hp -= 1
         if(self.hp <= 0):
             self.pad.addstr(self.x, self.y, self.previous)
             return True
@@ -90,13 +93,19 @@ class Animal():
     
     def is_horny(self):
         self.sex_drive -= 1
-        if (self.sex_drive <= 4):
+        if (self.sex_drive <= 0):
             return True
         return False
 
-    def look_for_mate(self):
-        pass
+    def is_hungry(self):
+        self.hunger -= 1
+        if (self.hunger <= 5):
+            if(self.hunter <= 0):
+                self.hp -= 1
+            return True
+        return False
 
+    # STATIC METHODS
     @staticmethod
     def mate(self, lover_a, lover_b):
         lover_a.sex_drive = 10
