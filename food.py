@@ -24,9 +24,9 @@ def gen_food(pad):
                 current_value = chr(attrs & 0xFF)
 
                 if current_value == 'w':
-                    pad.addstr(Rows, columns, 'F', COLOR_PECES)
+                    pad.addstr(Rows, columns, '>', COLOR_PECES)
                 elif current_value == 'g':
-                    pad.addstr(Rows, columns, 'M', COLOR_MANZANAS)
+                    pad.addstr(Rows, columns, '.', COLOR_MANZANAS)
                 elif current_value == 'Y':
                     pad.addstr(Rows, columns, 'Y', COLOR_MANZANAS)
                 
