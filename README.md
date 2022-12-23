@@ -1,6 +1,6 @@
 # fantasy_simulation
 
 ## TODO
--[] map class
--[] food class
--[] look for cashe
+- [ ] map class
+- [ ] food class
+- [ ] look for cashe
